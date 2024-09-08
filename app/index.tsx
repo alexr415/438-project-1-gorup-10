@@ -1,6 +1,10 @@
-import { Text, View } from "react-native";
+import { Text, View,Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+
 
 export default function Index() {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -10,6 +14,8 @@ export default function Index() {
       }}
     >
       <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate('homePage')} />
+
     </View>
   );
 }
