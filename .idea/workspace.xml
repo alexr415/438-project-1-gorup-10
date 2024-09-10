@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="34d20580-6a01-4dba-844e-46ffaf874bb2" name="Changes" comment="" />
+    <list default="true" id="34d20580-6a01-4dba-844e-46ffaf874bb2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/AppDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/FavoriteArticle.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/FavoriteArticle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/FavoriteArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/FavoriteArticleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/User.Java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/User.Java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/anonymous/demoApp/UserDAO.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +60,7 @@
       <workItem from="1725480608927" duration="2000" />
       <workItem from="1725481776085" duration="13000" />
       <workItem from="1725560757492" duration="396000" />
-      <workItem from="1725945719592" duration="3196000" />
+      <workItem from="1725945719592" duration="3654000" />
     </task>
     <servers />
   </component>
