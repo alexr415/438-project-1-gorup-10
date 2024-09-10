@@ -17,6 +17,17 @@ class MainActivity : ReactActivity() {
     // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
     super.onCreate(null)
+
+      val db = Room.databaseBuilder(
+              applicationContext,
+              AppDatabase::class.java, "Database"
+      ).build()
+
+      val userDao = db.userDao()
+      val users: List<User> = userDao.getUsers();
+
+      val favoriteArticleDao = db.favoriteArticleDAO()
+      val favoriteArticles: List<FavoriteArticle> = favoriteArticleDao.getAllFavorites();
   }
 
   /**

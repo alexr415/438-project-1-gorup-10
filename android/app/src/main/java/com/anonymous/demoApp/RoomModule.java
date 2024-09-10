@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import java.util.Map;
 import java.util.HashMap;
+import android.util.Log;
 
 public class RoomModule extends ReactContextBaseJavaModule {
     RoomModule(ReactApplicationContext context) {
@@ -19,4 +20,7 @@ public class RoomModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public User getUserByID(int id){
+        Log.d("Getting user from ID: " + id);
+    }
 }
