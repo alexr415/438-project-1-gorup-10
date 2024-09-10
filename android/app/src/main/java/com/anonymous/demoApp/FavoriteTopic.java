@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
-@Entity(tableName = "faveoriteTopics")
+@Entity(tableName = "favoriteTopics")
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int favoriteID;
