@@ -20,6 +20,14 @@ public class User {
         this.topic = topic;
     }
 
+    public int getFavoriteID(){
+        return favoriteID;
+    }
+
+    public void setFavoriteID(int favoriteID){
+        this.favoriteID = favoriteID;
+    }
+
     public int getUserID() {
         return userID;
     }
@@ -28,59 +36,32 @@ public class User {
         this.userID = userID;
     }
 
-    public String getUsername() {
-        return username;
+    public String getTopic() {
+        return topic;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setTopic(String userID) {
+        this.topic = topic;
     }
 
-    public String getPassword() {
-        return password;
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        User user = (User) object;
+        return favoriteID == user.favoriteID && userID == user.userID && java.util.Objects.equals(topic, user.topic);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return userID == user.userID && isActive == user.isActive && isAdmin == user.isAdmin && username.equals(user.username) && password.equals(user.password);
-    }
-
-    @Override
     public int hashCode() {
-        return Objects.hash(userID, username, password, isActive, isAdmin);
+        return Objects.hash(super.hashCode(), favoriteID, userID, topic);
     }
 
-    @Override
-    public String toString() {
+    @java.lang.Override
+    public java.lang.String toString() {
         return "User{" +
-                "userID=" + userID +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", isActive=" + isActive +
-                ", isAdmin=" + isAdmin +
+                "favoriteID=" + favoriteID +
+                ", userID=" + userID +
+                ", topic='" + topic + '\'' +
                 '}';
     }
 }
