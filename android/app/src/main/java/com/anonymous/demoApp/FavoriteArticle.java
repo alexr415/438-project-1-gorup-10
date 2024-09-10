@@ -13,11 +13,15 @@ public class FavoriteArticle {
     private int userID;
 
     @NonNull
-    private String url;
+    private String title;
 
-    public User(@NonNull int favoriteID, @NonNull String url) {
+    @NonNull
+    private String date;
+
+    public User(@NonNull int favoriteID, @NonNull String title, @NonNull String date) {
         this.favoriteID = favoriteID;
-        this.url = url;
+        this.title = title;
+        this.date = date;
     }
 
     public int getFavoriteID() {
@@ -36,32 +40,41 @@ public class FavoriteArticle {
         this.userID = userID;
     }
 
-    public String getUrl() {
-        return url;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
-        User user = (User) object;
-        return favoriteID == user.favoriteID && userID == user.userID && java.util.Objects.equals(url, user.url);
+        FavoriteArticle that = (FavoriteArticle) object;
+        return favoriteID == that.favoriteID && userID == that.userID && java.util.Objects.equals(title, that.title) && java.util.Objects.equals(date, that.date);
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), favoriteID, userID, url);
+        return Objects.hash(super.hashCode(), favoriteID, userID, title, date);
     }
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "User{" +
+        return "FavoriteArticle{" +
                 "favoriteID=" + favoriteID +
                 ", userID=" + userID +
-                ", url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
