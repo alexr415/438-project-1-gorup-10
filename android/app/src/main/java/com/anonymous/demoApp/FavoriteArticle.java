@@ -20,11 +20,11 @@ public class FavoriteArticle {
         this.url = url;
     }
 
-    public int getFavoriteID(){
+    public int getFavoriteID() {
         return favoriteID;
     }
 
-    public void setFavoriteID(int favoriteID){
+    public void setFavoriteID(int favoriteID) {
         this.favoriteID = favoriteID;
     }
 
@@ -40,7 +40,7 @@ public class FavoriteArticle {
         return url;
     }
 
-    public void setUrl(String userID) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
