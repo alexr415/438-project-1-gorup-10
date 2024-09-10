@@ -4,8 +4,8 @@ import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
-@Entity(tableName = "favoriteTopics")
-public class User {
+@Entity(tableName = "favoriteArticles")
+public class FavoriteArticle {
     @PrimaryKey(autoGenerate = true)
     private int favoriteID;
 
@@ -13,11 +13,11 @@ public class User {
     private int userID;
 
     @NonNull
-    private String topic;
+    private String url;
 
-    public User(@NonNull int favoriteID, @NonNull String topic) {
+    public User(@NonNull int favoriteID, @NonNull String url) {
         this.favoriteID = favoriteID;
-        this.topic = topic;
+        this.url = url;
     }
 
     public int getFavoriteID(){
@@ -36,12 +36,12 @@ public class User {
         this.userID = userID;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getUrl() {
+        return url;
     }
 
-    public void setTopic(String userID) {
-        this.topic = topic;
+    public void setUrl(String userID) {
+        this.url = url;
     }
 
     public boolean equals(Object object) {
@@ -49,11 +49,11 @@ public class User {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         User user = (User) object;
-        return favoriteID == user.favoriteID && userID == user.userID && java.util.Objects.equals(topic, user.topic);
+        return favoriteID == user.favoriteID && userID == user.userID && java.util.Objects.equals(url, user.url);
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), favoriteID, userID, topic);
+        return Objects.hash(super.hashCode(), favoriteID, userID, url);
     }
 
     @java.lang.Override
@@ -61,7 +61,7 @@ public class User {
         return "User{" +
                 "favoriteID=" + favoriteID +
                 ", userID=" + userID +
-                ", topic='" + topic + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }
