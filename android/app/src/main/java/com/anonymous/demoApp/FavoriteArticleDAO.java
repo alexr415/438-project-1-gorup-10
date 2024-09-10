@@ -20,6 +20,15 @@ public interface FavoriteArticlesDAO {
     @Query("SELECT * FROM favoriteArticles")
     List<FavoriteArticle> getAllFavorites();
 
+    @Query("SELECT * FROM favoriteArticles WHERE favoriteID = :id")
+    List<FavoriteArticle> getFavoriteByID(int id);
+
     @Query("SELECT * FROM favoriteArticles WHERE userID = :id")
     List<FavoriteArticle> getFavoritesByUserID(int id);
+
+    @Query("SELECT title FROM favoriteArticles WHERE favoriteID = :id")
+    List<String> getTitleByFavoriteID(int id);
+
+    @Query("SELECT date FROM favoriteArticles WHERE favoriteID = :id")
+    List<String> getDateByFavoriteID(int id);
 }
