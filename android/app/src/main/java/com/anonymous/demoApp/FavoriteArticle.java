@@ -20,10 +20,22 @@ public class FavoriteArticle {
     @NonNull
     private String date;
 
-    public User(@NonNull int favoriteID, @NonNull String title, @NonNull String date) {
+    @NonNull
+    private String imgURL;
+
+    @NonNull
+    private String author;
+
+    @NonNull
+    private String content;
+
+    public User(@NonNull int favoriteID, @NonNull String title, @NonNull String date, @NonNull String imgURL, @NonNull String author, @NonNull String content) {
         this.favoriteID = favoriteID;
         this.title = title;
         this.date = date;
+        this.imgURL = imgURL;
+        this.author = author;
+        this. content = content;
     }
 
     public int getFavoriteID() {
@@ -58,16 +70,40 @@ public class FavoriteArticle {
         this.date = date;
     }
 
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         FavoriteArticle that = (FavoriteArticle) object;
-        return favoriteID == that.favoriteID && userID == that.userID && java.util.Objects.equals(title, that.title) && java.util.Objects.equals(date, that.date);
+        return favoriteID == that.favoriteID && userID == that.userID && title.equals(that.title) && date.equals(that.date) && imgURL.equals(that.imgURL) && author.equals(that.author) && content.equals(that.content);
     }
 
     public int hashCode() {
-        return Objects.hash(super.hashCode(), favoriteID, userID, title, date);
+        return Objects.hash(super.hashCode(), favoriteID, userID, title, date, imgURL, author, content);
     }
 
     @java.lang.Override
@@ -77,6 +113,9 @@ public class FavoriteArticle {
                 ", userID=" + userID +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
+                ", imgURL='" + imgURL + '\'' +
+                ", author='" + author + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }
