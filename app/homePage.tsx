@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigation } from "@react-navigation/native";
 
-import { Text, View, Button, StyleSheet, ScrollView, TextInput, Image } from "react-native";
+import {Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image } from "react-native";
 
 const API_KEY = '1f4275f92db343f4b6ee3d7dcd6bc730';
 
@@ -39,6 +40,11 @@ const homePage: React.FC = () => {
         fetchArticles(query);
     };
 
+    const handleArticlePress = (title: string) => {
+        Alert.alert('Article Selected', title);
+    };
+    const navigation = useNavigation();
+
 
     return (
         <View style={styles.container}>
@@ -53,15 +59,16 @@ const homePage: React.FC = () => {
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
-
                 {loading ? (
                     <Text>Loading...</Text>
                 ) : articles.length > 0 ? (
                     articles.map((article, index) => (
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article })}>
                         <View style={styles.flexBox} key={index}>
                             <Text style={styles.articleText}>{article?.title ?? "No title available"}</Text>
-                            <Image style={styles.articleImage} source={{ uri: article?.urlToImage ?? 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F4263648-newspaper-line-icon-folded-document-logo-breaking-news-app-simple-logo-press-pages-flat-minimal-style-emblem-daily-news-linear-style-vector-illustration-correspondence-contour-icontype&psig=AOvVaw2gyv6msaPqmAN7v7xziqkN&ust=1725919565282000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPjN8OCttIgDFQAAAAAdAAAAABAE' }} />
+                            <Image style={styles.articleImage} source={{ uri: article?.urlToImage ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg' }} />
                         </View>
+                        </TouchableOpacity>
                     ))
                 ) : (
                     <Text>No results</Text>
