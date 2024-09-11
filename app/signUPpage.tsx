@@ -3,18 +3,10 @@ import { useNavigation } from "@react-navigation/native";
 export default function Index() {
   return (
 
-    const moveH = useNavigation();//once logged in will move you to home
-    const signOut = useNavigation();//for later use once u are logged in
     const signUP = useNavigation();
 
-     const logInButton = () => {
-        navigation.moveH('homePage');
-     }
-      const signOutButton = () => {
-             navigation.moveH('index');
-          }
     const signUPButton = () => {
-           navigation.moveH('singUPpage');
+           navigation.moveH('index');
         }
     <View
 
@@ -38,15 +30,18 @@ export default function Index() {
       secureTextEntry={true}
       />
 
+         <Text>RE ENTER PASSWORD</Text>
+         <TextInput
+         style={styles.input}
+        placeholder = "Pass"
+        secureTextEntry={true}
+        />
+//will need to add a checker for this once database complete
       <Button
         title="Sign up"
-        onPress={logInButton}
+        onPress={signUPButton}
       />
 
-        <Button
-          title="Sign out"
-          onPress={signOutButton}
-        />
 
 
 
