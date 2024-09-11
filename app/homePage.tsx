@@ -84,16 +84,25 @@ const homePage: React.FC = () => {
                 ) : articles?.length > 0 ? (
                     articles.map((article, index) => (
                         <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article })}>
-                            <View style={styles.flexBox} key={index}>
-                                <Text style={styles.articleText}>{article?.headline?.main ?? article?.title ?? "No title available"}</Text>
-                                <Image style={styles.articleImage} source={{
-                                    uri: // Handle `media` from the most popular articles API
-                                        article?.media?.[0]?.['media-metadata']?.[2]?.url
-                                        ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null)
-                                        ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg'
-                                }} />
-                            </View>
-                        </TouchableOpacity>
+    <View style={styles.flexBox} key={index}>
+        <View style={styles.textContainer}>
+            <Text style={styles.articleText}>
+                {article?.headline?.main ?? article?.title ?? "No title available"}
+            </Text>
+            <Text style={styles.articleDate}>
+                {new Date(article?.pub_date ?? article?.published_date).toLocaleDateString() ?? "No date available"}
+            </Text>
+        </View>
+        <Image
+            style={styles.articleImage}
+            source={{
+                uri: article?.media?.[0]?.['media-metadata']?.[2]?.url
+                    ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null)
+                    ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg'
+            }}
+        />
+    </View>
+</TouchableOpacity>
                     ))
                 ) : (
                     <Text>No results</Text>
@@ -125,25 +134,31 @@ const styles = StyleSheet.create({
     flexBox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         padding: 10,
         backgroundColor: '#61DAFB',
         borderRadius: 4,
         marginBottom: 2,
         height: 100,
     },
-    articleText: {
-        marginTop: 10,
+    textContainer: {
+        flex: 1, 
         justifyContent: 'center',
+    },
+    articleText: {
         fontWeight: 'bold',
         fontFamily: 'fantasy',
-        flex: 1,
-        marginRight: 10,
+        marginBottom: 5,
+    },
+    articleDate: {
+        fontStyle: 'italic',
+        color: '#333',
     },
     articleImage: {
         borderRadius: 10,
         width: 80,
         height: 80,
-        alignSelf: 'flex-end',
+        marginLeft: 10, 
     },
 });
 
