@@ -1,13 +1,8 @@
 import { Text, View, Button, StyleSheet, ScrollView, TextInput, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 export default function Index() {
+ const nav = useNavigation();
   return (
-
-    const signUP = useNavigation();
-
-    const signUPButton = () => {
-           navigation.moveH('index');
-        }
     <View
 
       style={{
@@ -18,28 +13,29 @@ export default function Index() {
     >
 
        <Text>USERNAME</Text>
+
        <TextInput
-       style={styles.input}
-       placeholder = "Name"
+            placeholder = "Name"
        />
 
+
        <Text>PASSWORD</Text>
+
        <TextInput
-       style={styles.input}
-      placeholder = "Pass"
-      secureTextEntry={true}
+          placeholder = "Pass"
+          secureTextEntry={true}
       />
+
 
          <Text>RE ENTER PASSWORD</Text>
          <TextInput
-         style={styles.input}
-        placeholder = "Pass"
-        secureTextEntry={true}
+            placeholder = "Pass"
+            secureTextEntry={true}
         />
-//will need to add a checker for this once database complete
+
       <Button
         title="Sign up"
-        onPress={signUPButton}
+        onPress={() => nav.navigate('index')}
       />
 
 

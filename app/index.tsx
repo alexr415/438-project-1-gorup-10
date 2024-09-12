@@ -1,21 +1,11 @@
 import { Text, View, Button, StyleSheet, ScrollView, TextInput, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 export default function Index() {
+const navigation = useNavigation();
   return (
 
-    const moveH = useNavigation();//once logged in will move you to home
-    const signOut = useNavigation();//for later use once u are logged in
-    const signUP = useNavigation();
 
-     const logInButton = () => {
-        navigation.moveH('homePage');
-     }
-      const signOutButton = () => {
-             navigation.moveH('index');
-          }
-    const signUPButton = () => {
-           navigation.moveH('singUPpage');
-        }
     <View
 
       style={{
@@ -27,26 +17,26 @@ export default function Index() {
 
        <Text>USERNAME</Text>
        <TextInput
-       style={styles.input}
        placeholder = "Name"
        />
 
        <Text>PASSWORD</Text>
        <TextInput
-       style={styles.input}
       placeholder = "Pass"
       secureTextEntry={true}
       />
 
-      <Button
-        title="Sign up"
-        onPress={logInButton}
-      />
+    <Button
+    title="Sign up"
+    onPress={() => navigation.navigate('signUPpage')}
+    />
 
-        <Button
-          title="Sign out"
-          onPress={signOutButton}
+     <Button
+        title="Log In"
+        onPress={() => navigation.navigate('signUPpage')}
         />
+
+
 
 
 
