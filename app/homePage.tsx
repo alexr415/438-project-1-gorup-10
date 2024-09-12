@@ -11,12 +11,21 @@ const homePage: React.FC = () => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
+    const [beginDate, setBeginDate] = useState('');
+    const [endDate, setEndDate] = useState('')
 
-    const fetchArticles = async (searchQuery = '') => {
+    const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '') => {
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
         if (searchQuery.trim()) {
             url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
+            if(beginDate){
+            url += `&begin_date=${beginDate.replace(/-/g,"")}`;
+            }
+            if(endDate){
+                url += `&end_date=${endDate.replace(/-/g,"")}`;
+            }
+
             try {
                 const response = await fetch(url);
                 const data = await response.json();
