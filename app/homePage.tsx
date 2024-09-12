@@ -16,7 +16,7 @@ const homePage: React.FC = () => {
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
         if (searchQuery.trim()) {
-            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
+            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
             try {
                 const response = await fetch(url);
                 const data = await response.json();
