@@ -84,6 +84,7 @@ const homePage: React.FC = () => {
                 onChangeText={setQuery}
 
             />
+            {/* Filters: glocations, news_desk, source, subject */}
             <Button title="Search" onPress={handleSearch} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
