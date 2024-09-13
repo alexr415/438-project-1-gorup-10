@@ -10,23 +10,28 @@ import React, {useState, useEffect} from "react";
   const db = SQLite.openDatabaseSync('NewsDB.db');
    db.execSync(`
     PRAGMA journal_mode = WAL;
-    drop table if exists user;
-    drop table if exists article;
         CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL);
 INSERT INTO user (username, password) VALUES ('admin', 'password');
 CREATE TABLE IF NOT EXISTS article (
     id INTEGER PRIMARY KEY NOT NULL,
-    userID INTEGER ,
-    url TEXT,
-    imageurl TEXT,
-    title TEXT ,
-    byline TEXT,
-    date TEXT ,
-    abstr TEXT, 
-    src TEXT,
-    section TEXT,
+    userID INTEGER NOT NULL,
+    url TEXT NOT NULL,
+    imageurl TEXT NOT NULL,
+    title TEXT NOT NULL,
+    byline TEXT NOT NULL,
+    date TEXT NOT NULL,
+    abstr TEXT NOT NULL, 
+    src TEXT NOT NULL,
+    section TEXT NOT NULL,
     FOREIGN KEY (userID) REFERENCES user(id) ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS tag (
+    id INTEGER PRIMARY KEY NOT NULL,
+    articleID INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    FOREIGN KEY (articleID) REFERENCES article(id) ON DELETE CASCADE
 );`
+
 // INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
 // VALUES (
 //     1,                                  

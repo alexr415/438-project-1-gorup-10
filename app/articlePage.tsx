@@ -10,6 +10,15 @@ const articlePage: React.FC = () => {
     const route = useRoute();
     const { article,user } = route.params;
 
+    const addTag = (tag: string, articleID: number) => {
+        const db = SQLite.openDatabaseSync('NewsDB.db');
+        console.log('adding tag:', tag);
+        console.log('articleID:', articleID);
+        db.runSync(`INSERT INTO tag (articleID, name) VALUES (?,?)`, [articleID, tag]);
+        
+       
+    }
+
     const handleFavorite = () => {
         const db = SQLite.openDatabaseSync('NewsDB.db');
        
@@ -39,10 +48,20 @@ const articlePage: React.FC = () => {
             let src = article.source;
             console.log(article?.section_name ?? article.section);
             let section = article?.section_name ?? article.section;
-            db.runSync(`INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
+            let result = db.runSync(`INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
             VALUES (
                 ?,?,?,?,?,?,?,?,?                  
             )`, [userID, url, imageurl, title, byline, date, abstr, src, section]);
+            console.log('lastInsertRowId:', result.lastInsertRowId);
+            if (article?.des_facet) {
+                article.des_facet.forEach((tag: string) => {
+                    addTag(tag, result.lastInsertRowId);
+                });
+            } else if (article?.keywords) {
+                article.keywords.forEach((keyword: { tag: string }) => {
+                    addTag(keyword.tag,result.lastInsertRowId);
+                });
+            }
            // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
             Alert.alert('Article added to favorites');
         }
