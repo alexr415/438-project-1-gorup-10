@@ -21,19 +21,18 @@ const SuggestionsPage: React.FC = () => {
     useEffect(() => {
         if (fetchTags()) {
             fetchSuggestions();
+            
         };
     }, []);
 
     const fetchSuggestions = async () => {
         setLoading(true);
-        const randomIndex = Math.floor(Math.random() * tags.length);
        
-        const suggestion = tags[Math.floor(Math.random() * tags.length)];
         const search1 =tags[Math.floor(Math.random() * tags.length)].name;
         const search2 =tags[Math.floor(Math.random() * tags.length)].name;
         const search3 =tags[Math.floor(Math.random() * tags.length)].name;
         console.log("Search Query" + search1 + " " + search2 + " " +search3);
-        let searchQuery = "" + tags[Math.floor(Math.random() * tags.length)].name + " " + tags[Math.floor(Math.random() * tags.length)].name + " " + tags[Math.floor(Math.random() * tags.length)].name;
+        let searchQuery = "" + search1 + " " + search2;
         let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`
         try {
 
@@ -41,6 +40,7 @@ const SuggestionsPage: React.FC = () => {
             const data = await response.json();
             // console.log(data);
             if (data.status === 'OK') {
+                
                 setSuggestions(data.response.docs);
                 //console.log(suggestions);
                 
