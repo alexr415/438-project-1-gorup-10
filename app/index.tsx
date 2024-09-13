@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS article (
     title TEXT NOT NULL,
     byline TEXT,
     date TEXT NOT NULL,
-    abstr TEXT,  -- 'abstract' is a reserved keyword, so 'abstr' is used
+    abstr TEXT, 
     src TEXT,
     section TEXT,
     FOREIGN KEY (userID) REFERENCES user(id) ON DELETE CASCADE
@@ -45,7 +45,7 @@ const handleLogin = () => {
   const db = SQLite.openDatabaseSync('NewsDB.db');
   const user = db.getFirstSync('SELECT * FROM user WHERE username = ? AND password = ?', [username, password]);
   if (user) {
-    navigation.navigate('homePage');
+    navigation.navigate('homePage'), {user};
   }
   else {
     Alert.alert('Invalid username or password');
