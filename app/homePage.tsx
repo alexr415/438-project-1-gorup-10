@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-
+import * as SQLite from 'expo-sqlite';
 import { Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking } from "react-native";
 
 const API_KEY = '8duji3hTFBI6T8qSfdg1VWLixNcAnsV8';
 
-
+async function fetchDB() {
+    console.log("opening db");
+    const db = await SQLite.openDatabaseAsync('NewsDB.db');
+    const firstRow = await db.getFirstAsync('SELECT * FROM user');
+    console.log(firstRow.id, firstRow.username, firstRow.password)
+}
 
 const homePage: React.FC = () => {
     const [articles, setArticles] = useState([]);
@@ -29,7 +34,7 @@ const homePage: React.FC = () => {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.response.docs);
                     console.log("fetch successful");
@@ -45,7 +50,7 @@ const homePage: React.FC = () => {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.results);
                     console.log("fetch successful");
@@ -62,6 +67,7 @@ const homePage: React.FC = () => {
 
     useEffect(() => {
         fetchArticles();
+        fetchDB();
     }, []);
 
     const handleSearch = () => {
