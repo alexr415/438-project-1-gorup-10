@@ -58,8 +58,8 @@ const articlePage: React.FC = () => {
                     addTag(tag, result.lastInsertRowId);
                 });
             } else if (article?.keywords) {
-                article.keywords.forEach((keyword: { tag: string }) => {
-                    addTag(keyword.tag,result.lastInsertRowId);
+                article.keywords.forEach((keyword: { value: string }) => {
+                    addTag(keyword.value, result.lastInsertRowId);
                 });
             }
            // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
