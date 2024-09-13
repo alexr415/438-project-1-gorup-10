@@ -12,7 +12,13 @@ const homePage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
     const [beginDate, setBeginDate] = useState('');
-    const [endDate, setEndDate] = useState('')
+    const [endDate, setEndDate] = useState('');
+    
+    // Filter Use States
+    const [gLocationFilter, setGLocation] = useState('');
+    const [newsDeskFilter, setNewsDesk] = useState('');
+    const [sourceFilter, setSource] = useState('');
+    const [subjectFilter, setSubject] = useState('');
 
     const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '') => {
         setLoading(true);
