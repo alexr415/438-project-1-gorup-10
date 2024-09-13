@@ -1,14 +1,57 @@
 import React from 'react';
-import { View, Text, Image, Button, TouchableOpacity, Linking, StyleSheet } from 'react-native';
+import { Alert, View, Text, Image, Button, TouchableOpacity, Linking, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import * as SQLite from 'expo-sqlite';
 
 
 
 
 const articlePage: React.FC = () => {
     const route = useRoute();
-    const { article } = route.params;
+    const { article,user } = route.params;
+
+    const handleFavorite = () => {
+        const db = SQLite.openDatabaseSync('NewsDB.db');
+       
+        const favorite = db.getFirstSync('SELECT * FROM article WHERE url = ? AND userID = ?', [(article?.web_url ?? article.url), user.id]);
+        if (favorite) {
+            Alert.alert('Article already in favorites');
+            return;
+        }
+        else {
+            console.log('adding article to favorites');
+            console.log("USER ID:" + user.id);
+            let userID = user.id;
+            console.log(article?.web_url ?? article.url);
+            let url = article?.web_url ?? article.url;
+            console.log(article?.multimedia?.[0]?.url ?? article?.media?.[0]?.['media-metadata']?.[2]?.url);
+            let imageurl = article?.media?.[0]?.['media-metadata']?.[2]?.url
+            ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null);
+            console.log(article?.headline?.main ?? article.title);
+            let title = article?.headline?.main ?? article.title;
+            console.log(article?.byline?.original ?? article.byline);
+            let byline = article?.byline?.original ?? article.byline;
+            console.log(article?.pub_date ?? article?.published_date);
+            let date = article?.pub_date ?? article?.published_date;
+            console.log(article.abstract);
+            let abstr = article.abstract;
+            console.log(article.source);
+            let src = article.source;
+            console.log(article?.section_name ?? article.section);
+            let section = article?.section_name ?? article.section;
+            db.runSync(`INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
+            VALUES (
+                ?,?,?,?,?,?,?,?,?                  
+            )`, [userID, url, imageurl, title, byline, date, abstr, src, section]);
+           // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
+            Alert.alert('Article added to favorites');
+        }
+
+    }
+
+
     return (
+        
         <View style={styles.view}>
             <Image
 
@@ -38,7 +81,7 @@ const articlePage: React.FC = () => {
 
 
 
-
+<Text> userID: {user.id}</Text>
             <Text>Tags:</Text>
             <View style={styles.tagsContainer}>
                 {article?.des_facet ? (
@@ -56,7 +99,7 @@ const articlePage: React.FC = () => {
                 )}
             </View>
 
-            <Button title="Add To favorites" />
+            <Button title="Add To favorites" onPress={handleFavorite} />
 
             <Text>{'\n'}</Text>
 
