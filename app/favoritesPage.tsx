@@ -1,10 +1,11 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import { Text,ScrollView,View, TouchableOpacity, StyleSheet,Image} from 'react-native';
+import { Text,ScrollView,View, TouchableOpacity, StyleSheet,Image, Button} from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
-import { useRoute, useFocusEffect } from '@react-navigation/native';
+import { useRoute, useFocusEffect,useNavigation } from '@react-navigation/native';
 
 const FavoritesPage: React.FC = () => {
+    const navigation = useNavigation();
     const route = useRoute();
     const {user} = route.params;
     const [articles, setArticles] = useState<any[]>([]);
@@ -13,7 +14,7 @@ const FavoritesPage: React.FC = () => {
         console.log("fetching articles from db");
         const db = SQLite.openDatabaseSync('NewsDB.db');
         const articlesFromDB = db.getAllSync('SELECT * FROM article Where userID = ?', [user.id]);
-        console.log(articlesFromDB);
+        // console.log(articlesFromDB);
         setArticles(articlesFromDB);
     }
     
@@ -24,8 +25,10 @@ const FavoritesPage: React.FC = () => {
     );
 
     return (
+      
        
         <View>
+            <Button title="suggestions" onPress={()=>navigation.navigate('suggestionsPage',{user})} />
             <Text>Favorite Articles</Text>
         <ScrollView>
             
