@@ -133,7 +133,6 @@ const homePage: React.FC = () => {
     const [gLocationFilter, setGLocation] = useState('');
     const [newsDeskFilter, setNewsDesk] = useState('');
     const [sourceFilter, setSource] = useState('');
-    const [subjectFilter, setSubject] = useState('');
 
     // Filter Modal VisualuseState
     const [modalVisible, setModalVisible] = useState(false); // starts disabled
@@ -141,17 +140,39 @@ const homePage: React.FC = () => {
     // News Desk dropdown UseState
     const [value, setValue] = useState(null);
 
-    const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '', gLocation = '', newsDesk = '', source = '', subject = '') => {
+    const fetchArticles = async (searchQuery = '', gLocation = '', newsDesk = '', source = '') => {
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
         if (searchQuery.trim()) {
             url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
-            if (beginDate) {
-                url += `&begin_date=${beginDate.replace(/-/g, "")}`;
+            
+            // Check for any filters. If none, continue with unfiltered search
+            if(gLocation || newsDesk || source){
+                url += `&fq=`;
+                if(gLocation){
+                    if(url.charAt(url.length-1) != '='){
+                        url += 'AND'
+                    }
+                    url += `glocations:("${gLocation.trim()}")`;
+                }
+                if(newsDesk){
+                    if(url.charAt(url.length-1) != '='){
+                        url += 'AND'
+                    }
+                    url += `news_desk:("${newsDesk.trim()}")`;
+                }
+                if(source){
+                    if(url.charAt(url.length-1) != '='){
+                        url += 'AND'
+                    }
+                    url += `source:("${source.trim()}")`;
+                }
             }
-            if (endDate) {
-                url += `&end_date=${endDate.replace(/-/g, "")}`;
-            }
+
+            // sanity check
+            console.log('===== API URL CALLED =====')
+            console.log(url);
+            console.log('==========================')
 
             try {
                 const response = await fetch(url);
@@ -169,6 +190,11 @@ const homePage: React.FC = () => {
             }
         }
         else {
+            // sanity check
+            console.log('===== API URL CALLED =====')
+            console.log(url);
+            console.log('==========================')
+            
             try {
                 const response = await fetch(url);
                 const data = await response.json();
@@ -192,7 +218,7 @@ const homePage: React.FC = () => {
     }, []);
 
     const handleSearch = () => {
-        fetchArticles(query);
+        fetchArticles(query, gLocationFilter, newsDeskFilter, sourceFilter);
     };
 
     const handleArticlePress = (url: string) => {
@@ -243,15 +269,6 @@ const homePage: React.FC = () => {
                             onChangeText={setSource}
                         />
 
-                        {/* Subject Filter */}
-                        <Text style={styles.modalText}>Subject</Text>
-                        <TextInput
-                            style={styles.modalInput}
-                            placeholder="Enter Subject"
-                            value={subjectFilter}
-                            onChangeText={setSubject}
-                        />
-
                         {/* News Desk Filter */}
                         <Text style={styles.modalText}>News Desk</Text>
                         <Dropdown
@@ -284,7 +301,7 @@ const homePage: React.FC = () => {
                 </View>
             </Modal>
 
-            <Button title="Add Filters" onPress={() => setModalVisible(true)} />
+            <Button title="Add Search Filters" onPress={() => setModalVisible(true)} />
 
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -349,7 +366,7 @@ const styles = StyleSheet.create({
       },
     centeredView: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
     },
