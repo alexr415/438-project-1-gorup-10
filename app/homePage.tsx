@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-import { Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking} from "react-native";
+import * as SQLite from 'expo-sqlite';
+import { useRoute } from '@react-navigation/native';
+import { Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking } from "react-native";
 
 const API_KEY = '8duji3hTFBI6T8qSfdg1VWLixNcAnsV8';
 
 
+async function fetchDB() {
+    console.log("opening db");
+    const db = await SQLite.openDatabaseAsync('NewsDB.db');
+    const firstRow = await db.getFirstAsync('SELECT * FROM user');
+    console.log(firstRow.id, firstRow.username, firstRow.password)
+}
 
 const homePage: React.FC = () => {
+    const route = useRoute();
+    const {user} = route.params;
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
@@ -18,6 +28,7 @@ const homePage: React.FC = () => {
 
 
     const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '') => {
+        console.log(user.id)
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
         if (searchQuery.trim() || beginDate || endDate) {
@@ -30,9 +41,10 @@ const homePage: React.FC = () => {
             }
 
             try {
+                
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.response.docs);
                     console.log("fetch successful");
@@ -48,7 +60,7 @@ const homePage: React.FC = () => {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.results);
                     console.log("fetch successful");
@@ -65,6 +77,7 @@ const homePage: React.FC = () => {
 
     useEffect(() => {
         fetchArticles();
+        fetchDB();
     }, []);
 
     const handleSearch = () => {
@@ -105,6 +118,7 @@ const homePage: React.FC = () => {
             />
 
             <Button title="Search" onPress={handleSearch} />
+            <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
@@ -112,7 +126,7 @@ const homePage: React.FC = () => {
                     <Text>Loading...</Text>
                 ) : articles?.length > 0 ? (
                     articles.map((article, index) => (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article })}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article, user })}>
     <View style={styles.flexBox} key={index}>
         <View style={styles.textContainer}>
             <Text style={styles.articleText}>

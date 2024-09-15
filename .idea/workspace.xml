@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="34d20580-6a01-4dba-844e-46ffaf874bb2" name="Changes" comment="sign up / log in &#10;includes a button for log out to use once logged in can be copied and pasted into other pages once logged in to sign out.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/homePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/homePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/articlePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/articlePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/favoritesPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/favoritesPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
+>>>>>>> origin/main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
