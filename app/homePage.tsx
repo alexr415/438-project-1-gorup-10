@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
 
+
 import { Modal, Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking } from "react-native";
 import { Dropdown } from 'react-native-element-dropdown';
+
+import * as SQLite from 'expo-sqlite';
+import { useRoute } from '@react-navigation/native';
+
 
 
 const API_KEY = '8duji3hTFBI6T8qSfdg1VWLixNcAnsV8';
 
+
 // News Desk Filter Drowpdown data
 const data = [
-    { label: '', value: 1},
+    { label: '', value: 1 },
     { label: "Adventure Sports", value: 2 },
     { label: "Arts & Leisure", value: 3 },
     { label: "Arts", value: 4 },
@@ -122,12 +128,23 @@ const data = [
     { label: "Your Money", value: 111 },
 ];
 
+async function fetchDB() {
+    console.log("opening db");
+    const db = await SQLite.openDatabaseAsync('NewsDB.db');
+    const firstRow = await db.getFirstAsync('SELECT * FROM user');
+    console.log(firstRow.id, firstRow.username, firstRow.password)
+}
+
+
 const homePage: React.FC = () => {
+    const route = useRoute();
+    const { user } = route.params;
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
     const [beginDate, setBeginDate] = useState('');
     const [endDate, setEndDate] = useState('');
+
 
     // Filter Usestates
     const [gLocationFilter, setGLocation] = useState('');
@@ -140,29 +157,38 @@ const homePage: React.FC = () => {
     // News Desk dropdown UseState
     const [value, setValue] = useState(null);
 
-    const fetchArticles = async (searchQuery = '', gLocation = '', newsDesk = '', source = '') => {
+    const navigation = useNavigation();
+
+    const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '', gLocation = '', newsDesk = '', source = '') => {
+        console.log(user.id)
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
-        if (searchQuery.trim()) {
-            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
-            
+        if (searchQuery.trim() || beginDate || endDate) {
+            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=${API_KEY}`;
+            if (beginDate) {
+                url += `&begin_date=${beginDate.replace(/-/g, '')}`;
+            }
+            if (endDate) {
+                url += `&end_date=${endDate.replace(/-/g, '')}`;
+            }
+
             // Check for any filters. If none, continue with unfiltered search
-            if(gLocation || newsDesk || source){
+            if (gLocation || newsDesk || source) {
                 url += `&fq=`;
-                if(gLocation){
-                    if(url.charAt(url.length-1) != '='){
+                if (gLocation) {
+                    if (url.charAt(url.length - 1) != '=') {
                         url += 'AND'
                     }
                     url += `glocations:("${gLocation.trim()}")`;
                 }
-                if(newsDesk){
-                    if(url.charAt(url.length-1) != '='){
+                if (newsDesk) {
+                    if (url.charAt(url.length - 1) != '=') {
                         url += 'AND'
                     }
                     url += `news_desk:("${newsDesk.trim()}")`;
                 }
-                if(source){
-                    if(url.charAt(url.length-1) != '='){
+                if (source) {
+                    if (url.charAt(url.length - 1) != '=') {
                         url += 'AND'
                     }
                     url += `source:("${source.trim()}")`;
@@ -175,9 +201,10 @@ const homePage: React.FC = () => {
             console.log('==========================')
 
             try {
+
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.response.docs);
                     console.log("fetch successful");
@@ -188,17 +215,16 @@ const homePage: React.FC = () => {
             } finally {
                 setLoading(false);
             }
-        }
-        else {
+        } else {
             // sanity check
             console.log('===== API URL CALLED =====')
             console.log(url);
             console.log('==========================')
-            
+
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 if (data.status === 'OK') {
                     setArticles(data.results);
                     console.log("fetch successful");
@@ -210,29 +236,45 @@ const homePage: React.FC = () => {
                 setLoading(false);
             }
         }
-
     };
 
     useEffect(() => {
         fetchArticles();
+        fetchDB();
     }, []);
 
     const handleSearch = () => {
-        fetchArticles(query, gLocationFilter, newsDeskFilter, sourceFilter);
+        fetchArticles(query, beginDate, endDate, gLocationFilter, newsDeskFilter, sourceFilter);
     };
 
     const handleArticlePress = (url: string) => {
+
         Linking.openURL(url)
     };
-    const navigation = useNavigation();
 
     return (
+
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
                 placeholder="Search for articles"
                 value={query}
                 onChangeText={setQuery}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Begin Date (YYYY-MM-DD)"
+                value={beginDate}
+                onChangeText={setBeginDate}
+                keyboardType="numeric"
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="End Date (YYYY-MM-DD)"
+                value={endDate}
+                onChangeText={setEndDate}
+                keyboardType="numeric"
             />
 
             <Button title="Search" onPress={handleSearch} />
@@ -302,7 +344,7 @@ const homePage: React.FC = () => {
             </Modal>
 
             <Button title="Add Search Filters" onPress={() => setModalVisible(true)} />
-
+            <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
@@ -310,7 +352,7 @@ const homePage: React.FC = () => {
                     <Text>Loading...</Text>
                 ) : articles?.length > 0 ? (
                     articles.map((article, index) => (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article })}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article, user })}>
                             <View style={styles.flexBox} key={index}>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.articleText}>
@@ -330,6 +372,7 @@ const homePage: React.FC = () => {
                                 />
                             </View>
                         </TouchableOpacity>
+
                     ))
                 ) : (
                     <Text>No results</Text>
@@ -345,7 +388,7 @@ const homePage: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-      dropdown: {
+    dropdown: {
         height: 50,
         width: 200,
         borderColor: 'gray',
@@ -353,17 +396,17 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 8,
         marginBottom: 20
-      },
-      placeholderStyle: {
+    },
+    placeholderStyle: {
         fontSize: 16,
-      },
-      selectedTextStyle: {
+    },
+    selectedTextStyle: {
         fontSize: 16,
-      },
-      inputSearchStyle: {
+    },
+    inputSearchStyle: {
         height: 40,
         fontSize: 16,
-      },
+    },
     centeredView: {
         flex: 1,
         justifyContent: 'center',
@@ -446,5 +489,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
 });
+
 
 export default homePage;
