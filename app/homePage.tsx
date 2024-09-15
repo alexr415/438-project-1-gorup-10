@@ -21,19 +21,23 @@ const homePage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('');
     const [beginDate, setBeginDate] = useState('');
-    const [endDate, setEndDate] = useState('')
+    const [endDate, setEndDate] = useState('');
+    const navigation = useNavigation();
+
+
+
 
     const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '') => {
         console.log(user.id)
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
-        if (searchQuery.trim()) {
-            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`;
+        if (searchQuery.trim() || beginDate || endDate) {
+            url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=${API_KEY}`;
             if(beginDate){
-            url += `&begin_date=${beginDate.replace(/-/g,"")}`;
+            url += `&begin_date=${beginDate.replace(/-/g,'')}`;
             }
             if(endDate){
-                url += `&end_date=${endDate.replace(/-/g,"")}`;
+                url += `&end_date=${endDate.replace(/-/g,'')}`;
             }
 
             try {
@@ -77,17 +81,18 @@ const homePage: React.FC = () => {
     }, []);
 
     const handleSearch = () => {
-        fetchArticles(query);
+        fetchArticles(query, beginDate, endDate);
     };
 
     const handleArticlePress = (url: string) => {
+
         Linking.openURL(url)
     };
-    const navigation = useNavigation();
 
 
 
     return (
+
         <View style={styles.container}>
             <TextInput
                 style={styles.input}
@@ -96,6 +101,22 @@ const homePage: React.FC = () => {
                 onChangeText={setQuery}
 
             />
+            <TextInput
+                style={styles.input}
+                placeholder="Begin Date (YYYY-MM-DD)"
+                value={beginDate}
+                onChangeText={setBeginDate}
+                keyboardType="numeric"
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="End Date (YYYY-MM-DD)"
+                value={endDate}
+                onChangeText={setEndDate}
+                keyboardType="numeric"
+            />
+
             <Button title="Search" onPress={handleSearch} />
             <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
 
@@ -122,6 +143,8 @@ const homePage: React.FC = () => {
                     ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null)
                     ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg'
             }}
+
+
         />
     </View>
 </TouchableOpacity>
@@ -183,5 +206,6 @@ const styles = StyleSheet.create({
         marginLeft: 10, 
     },
 });
+
 
 export default homePage;
