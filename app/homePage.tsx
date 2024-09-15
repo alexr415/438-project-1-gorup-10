@@ -141,7 +141,7 @@ const homePage: React.FC = () => {
     // News Desk dropdown UseState
     const [value, setValue] = useState(null);
 
-    const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '') => {
+    const fetchArticles = async (searchQuery = '', beginDate = '', endDate = '', gLocation = '', newsDesk = '', source = '', subject = '') => {
         setLoading(true);
         let url = `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`;
         if (searchQuery.trim()) {
