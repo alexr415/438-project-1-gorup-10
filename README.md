@@ -22,6 +22,6 @@
   - npx expo install expo-sqlite
   - npm install
 - when trying to run use: npx expo run
-- click android
+- click android and wait for downloades to complete
 - npx expo start
 - then press a 
