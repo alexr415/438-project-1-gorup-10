@@ -1,6 +1,6 @@
 #438 Project 1 Group 10 News Plug
 
-## This app allows users to browse articles, favorite them, and get suggestions based on their favorites
+**This app allows users to browse articles, favorite them, and get suggestions based on their favorites**
 
 ## API's used: 
 -https://developer.nytimes.com/docs/articlesearch-product/1/overview
