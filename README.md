@@ -13,5 +13,15 @@
 - **User can get suggestions based on favorites**: Suggestions page will load articles based on tags associated with articles that have been favorited
 
 - ## Usage:
+- this app is good to keep up to date with news and look for specific articles and intrests in the news 
 
 - ## Installation instructions:
+- install android studio and follow these steps https://reactnative.dev/docs/set-up-your-environment  (make sure to click the target OS android in the link)
+- additional installations are:
+- - npm install react-native-element-dropdown --save
+  - npx expo install expo-sqlite
+  - npm install
+- when trying to run use: npx expo run
+- click android
+- npx expo start
+- then press a 
