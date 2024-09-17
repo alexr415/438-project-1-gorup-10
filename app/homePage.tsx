@@ -98,6 +98,7 @@ const homePage: React.FC = () => {
             />
             <Button title="Search" onPress={handleSearch} />
             <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
+            <Button title="Logout" onPress={() => navigation.navigate('index')} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
