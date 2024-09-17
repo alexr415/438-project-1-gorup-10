@@ -19,10 +19,14 @@ const SuggestionsPage: React.FC = () => {
         return result?.length;
     }
     useEffect(() => {
-        if (fetchTags()) {
-            fetchSuggestions();
-        };
+        fetchTags();
     }, []);
+    
+    useEffect(() => {
+        if (tags.length > 0) {
+            fetchSuggestions();
+        }
+    }, [tags]);
 
     const fetchSuggestions = async () => {
         setLoading(true);
@@ -30,10 +34,10 @@ const SuggestionsPage: React.FC = () => {
        
         const suggestion = tags[Math.floor(Math.random() * tags.length)];
         const search1 =tags[Math.floor(Math.random() * tags.length)].name;
-        const search2 =tags[Math.floor(Math.random() * tags.length)].name;
-        const search3 =tags[Math.floor(Math.random() * tags.length)].name;
-        console.log("Search Query" + search1 + " " + search2 + " " +search3);
-        let searchQuery = "" + tags[Math.floor(Math.random() * tags.length)].name + " " + tags[Math.floor(Math.random() * tags.length)].name + " " + tags[Math.floor(Math.random() * tags.length)].name;
+        // const search2 =tags[Math.floor(Math.random() * tags.length)].name;
+        // const search3 =tags[Math.floor(Math.random() * tags.length)].name;
+        console.log("Search Query: " + search1);
+        let searchQuery = search1;
         let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=${encodeURIComponent(searchQuery)}&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8`
         try {
 
@@ -45,7 +49,7 @@ const SuggestionsPage: React.FC = () => {
                 //console.log(suggestions);
                 
             }
-            setTagsUsed([search1+ ", " +search2+ ", "+search3]);
+            setTagsUsed([search1]);
         } catch (error) {
             console.error('Error fetching articles:', error);
         }finally {
