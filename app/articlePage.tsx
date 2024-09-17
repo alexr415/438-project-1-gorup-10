@@ -8,20 +8,18 @@ import * as SQLite from 'expo-sqlite';
 
 const articlePage: React.FC = () => {
     const route = useRoute();
-    const { article,user } = route.params;
+    const { article, user } = route.params;
 
     const addTag = (tag: string, articleID: number) => {
         const db = SQLite.openDatabaseSync('NewsDB.db');
         console.log('adding tag:', tag);
         console.log('articleID:', articleID);
         db.runSync(`INSERT INTO tag (articleID, name) VALUES (?,?)`, [articleID, tag]);
-        
-       
     }
 
     const handleFavorite = () => {
         const db = SQLite.openDatabaseSync('NewsDB.db');
-       
+
         const favorite = db.getFirstSync('SELECT * FROM article WHERE url = ? AND userID = ?', [(article?.web_url ?? article.url), user.id]);
         if (favorite) {
             Alert.alert('Article already in favorites');
@@ -35,7 +33,7 @@ const articlePage: React.FC = () => {
             let url = article?.web_url ?? article.url;
             console.log(article?.multimedia?.[0]?.url ?? article?.media?.[0]?.['media-metadata']?.[2]?.url);
             let imageurl = article?.media?.[0]?.['media-metadata']?.[2]?.url
-            ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null);
+                ?? (article?.multimedia?.[0]?.url ? `https://www.nytimes.com/${article.multimedia[0].url}` : null);
             console.log(article?.headline?.main ?? article.title);
             let title = article?.headline?.main ?? article.title;
             console.log(article?.byline?.original ?? article.byline);
@@ -62,15 +60,15 @@ const articlePage: React.FC = () => {
                     addTag(keyword.value, result.lastInsertRowId);
                 });
             }
-           // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
+            // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
             Alert.alert('Article added to favorites');
         }
 
     }
 
-
+    console.log(article)
+    
     return (
-        
         <View style={styles.view}>
             <Image
 
@@ -100,7 +98,7 @@ const articlePage: React.FC = () => {
 
 
 
-<Text> userID: {user.id}</Text>
+            <Text> userID: {user.id}</Text>
             <Text>Tags:</Text>
             <View style={styles.tagsContainer}>
                 {article?.des_facet ? (
@@ -131,9 +129,9 @@ const articlePage: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-   
+
     view: {
-       
+
     },
     tagsContainer: {
         flexDirection: 'row',
@@ -188,7 +186,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 2,
         // borderRadius: 4,
         // margin: 5,
-        
+
     },
 });
 
