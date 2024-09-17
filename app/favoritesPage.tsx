@@ -34,7 +34,7 @@ const FavoritesPage: React.FC = () => {
 
                 {articles?.length > 0 ? (
                     articles.map((article, index) => (
-                        <TouchableOpacity key={index} onPress={() => navigation.navigate('favoritesPage', { user })}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { user, article })}>
                             <View style={styles.flexBox} key={index}>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.articleText}>
