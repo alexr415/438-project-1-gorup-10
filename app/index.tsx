@@ -1,14 +1,14 @@
 import { Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as SQLite from 'expo-sqlite';
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 
 
 
- function openDB() {
+function openDB() {
   const db = SQLite.openDatabaseSync('NewsDB.db');
-   db.execSync(`
+  db.execSync(`
     PRAGMA journal_mode = WAL;
         CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL);
 INSERT INTO user (username, password) VALUES ('admin', 'password');
@@ -32,21 +32,21 @@ CREATE TABLE IF NOT EXISTS tag (
     FOREIGN KEY (articleID) REFERENCES article(id) ON DELETE CASCADE
 );`
 
-// INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
-// VALUES (
-//     1,                                  
-//     'https://example.com/default.jpg',
-//     'https://google.com',
-//     'Default Title',                     
-//     'Author Name',                       
-//     '2024-09-12',                        
-//     'This is a default abstract.',       
-//     'Example Source',                   
-//     'Default Section'                   
-// );
+    // INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
+    // VALUES (
+    //     1,                                  
+    //     'https://example.com/default.jpg',
+    //     'https://google.com',
+    //     'Default Title',                     
+    //     'Author Name',                       
+    //     '2024-09-12',                        
+    //     'This is a default abstract.',       
+    //     'Example Source',                   
+    //     'Default Section'                   
+    // );
 
-    );
-    console.log("db created");
+  );
+  console.log("db created");
   return db;
 }
 
@@ -56,21 +56,21 @@ openDB();
 
 
 export default function Index() {
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-const handleLogin = () => {
- 
-  const db = SQLite.openDatabaseSync('NewsDB.db');
-  const user = db.getFirstSync('SELECT * FROM user WHERE username = ? AND password = ?', [username, password]);
-  if (user) {
-    navigation.navigate('homePage',{user});
-  }
-  else {
-    Alert.alert('Invalid username or password');
-  }
-};
-const navigation = useNavigation();
+  const handleLogin = () => {
+
+    const db = SQLite.openDatabaseSync('NewsDB.db');
+    const user = db.getFirstSync('SELECT * FROM user WHERE username = ? AND password = ?', [username, password]);
+    if (user) {
+      navigation.navigate('homePage', { user });
+    }
+    else {
+      Alert.alert('Invalid username or password');
+    }
+  };
+  const navigation = useNavigation();
   return (
 
 
@@ -83,30 +83,30 @@ const navigation = useNavigation();
       }}
     >
 
-       <Text>USERNAME</Text>
-       <TextInput
-       placeholder = "Name"
-       value={username}
-       onChangeText={setUsername}
-       />
-
-       <Text>PASSWORD</Text>
-       <TextInput
-      placeholder = "Pass"
-      value={password}
-      onChangeText={setPassword}
-      secureTextEntry={true}
+      <Text>USERNAME</Text>
+      <TextInput
+        placeholder="Name"
+        value={username}
+        onChangeText={setUsername}
       />
 
-    <Button
-    title="Sign up"
-    onPress={() => navigation.navigate('signUPpage')}
-    />
+      <Text>PASSWORD</Text>
+      <TextInput
+        placeholder="Pass"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry={true}
+      />
 
-     <Button
+      <Button
+        title="Sign up"
+        onPress={() => navigation.navigate('signUPpage')}
+      />
+
+      <Button
         title="Log In"
         onPress={handleLogin}
-        />
+      />
 
 
 
