@@ -36,10 +36,7 @@ const  editInfo = () =>
      nav.navigate('homePage');
 }
 
-const  goBack = () =>
-{
-    nav.navigate('index');
-}
+
 
 
   return (
@@ -74,10 +71,7 @@ const  goBack = () =>
        title= "Confirm Edit"
        onPress={editInfo}
    />
-    <Button
-           title= "BACK"
-           onPress={goBack}
-       />
+
 
     </View>
   );
