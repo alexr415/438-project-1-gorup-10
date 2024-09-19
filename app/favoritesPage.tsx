@@ -1,62 +1,62 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import { Text,ScrollView,View, TouchableOpacity, StyleSheet,Image, Button} from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Text, ScrollView, View, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 
-import { useRoute, useFocusEffect,useNavigation } from '@react-navigation/native';
+import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native';
 
 const FavoritesPage: React.FC = () => {
     const navigation = useNavigation();
     const route = useRoute();
-    const {user} = route.params;
+    const { user } = route.params;
     const [articles, setArticles] = useState<any[]>([]);
-    const fetchArticles = () =>{
-        
+    const fetchArticles = () => {
+
         console.log("fetching articles from db");
         const db = SQLite.openDatabaseSync('NewsDB.db');
         const articlesFromDB = db.getAllSync('SELECT * FROM article Where userID = ?', [user.id]);
         // console.log(articlesFromDB);
         setArticles(articlesFromDB);
     }
-    
+
     useFocusEffect(
         useCallback(() => {
-            fetchArticles(); 
+            fetchArticles();
         }, [])
     );
 
     return (
-      
-       
+
+
         <View>
-            <Button title="suggestions" onPress={()=>navigation.navigate('suggestionsPage',{user})} />
+            <Button title="suggestions" onPress={() => navigation.navigate('suggestionsPage', { user })} />
             <Text>Favorite Articles</Text>
-        <ScrollView>
-            
-        {articles?.length > 0 ? (
+            <ScrollView>
+
+                {articles?.length > 0 ? (
                     articles.map((article, index) => (
-                        <TouchableOpacity key={index}>
-    <View style={styles.flexBox} key={index}>
-        <View style={styles.textContainer}>
-            <Text style={styles.articleText}>
-                {article?.title ?? "No title available"}
-            </Text>
-            <Text style={styles.articleDate}>
-                {new Date(article?.date).toLocaleDateString() ?? "No date available"}
-            </Text>
-        </View>
-        <Image
-            style={styles.articleImage}
-            source={{
-                uri: article?.imageurl ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg'
-            }}
-        />
-    </View>
-</TouchableOpacity>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article, user })}>
+                            <View style={styles.flexBox} key={index}>
+                                <View style={styles.textContainer}>
+                                    <Text style={styles.articleText}>
+                                        {article?.title ?? "No title available"}
+                                    </Text>
+                                    <Text style={styles.articleDate}>
+                                        {new Date(article?.date).toLocaleDateString() ?? "No date available"}
+                                    </Text>
+                                </View>
+                                <Image
+                                    style={styles.articleImage}
+                                    source={{
+                                        uri: article?.imageurl ?? 'https://wingandaprayer.live/wp-content/uploads/2018/07/no-image-available.jpg'
+                                    }}
+                                />
+                            </View>
+                        </TouchableOpacity>
                     ))
                 ) : (
                     <Text>No results</Text>
                 )}
-        </ScrollView>
+            </ScrollView>
         </View>
     );
 };
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         height: 100,
     },
     textContainer: {
-        flex: 1, 
+        flex: 1,
         justifyContent: 'center',
     },
     articleText: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: 80,
         height: 80,
-        marginLeft: 10, 
+        marginLeft: 10,
     },
 });
 
