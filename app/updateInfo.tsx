@@ -33,10 +33,14 @@ const  editInfo = () =>
     }
     db.runSync('UPDATE user SET username = ?, password = ? WHERE id = ?', [usern, pass, user.id]);
      Alert.alert("Success", "User information updated please log in again");
-     nav.navigate('homePage');
+     nav.navigate('index');
 }
 
 
+const  goBack = () =>
+{
+    nav.navigate('homePage',{user});
+}
 
 
   return (
