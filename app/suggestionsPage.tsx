@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as SQLite from 'expo-sqlite';
 
 const SuggestionsPage: React.FC = () => {
+    const navigation = useNavigation();
     const route = useRoute();
     const { user } = route.params;
     const [tags, setTags] = useState<any[]>([]);
@@ -68,7 +69,7 @@ const SuggestionsPage: React.FC = () => {
                     <Text>Loading...</Text>
                 ) : suggestions?.length > 0 ? (
                     suggestions.map((article, index) => (
-                        <TouchableOpacity key={index}>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('articlePage', { article, user })}>
                             <View style={styles.flexBox} key={index}>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.articleText}>
