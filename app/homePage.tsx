@@ -353,6 +353,7 @@ const homePage: React.FC = () => {
 
             <Button title="Add Search Filters" onPress={() => setModalVisible(true)} />
             <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
+            <Button title="Logout" onPress={() => navigation.navigate('index')} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
