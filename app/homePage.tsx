@@ -252,6 +252,14 @@ const homePage: React.FC = () => {
         Linking.openURL(url)
     };
 
+    const updateAccount = () =>
+    {
+        navigation.navigate('updateInfo', {user});
+    };
+
+
+
+
     return (
 
         <View style={styles.container}>
@@ -379,6 +387,10 @@ const homePage: React.FC = () => {
                 )}
 
             </ScrollView>
+            <Button
+                   title="Account"
+                   onPress={updateAccount}
+                 />
         </View>
 
 
