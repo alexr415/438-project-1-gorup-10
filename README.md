@@ -23,5 +23,12 @@
   - npm install
 - when trying to run use: npx expo run
 - click android and wait for downloades to complete
+- STOP HERE and follow API TESTING if you want to test API is working correctly
 - npx expo start
 - then press a 
+
+
+- ## API TESTING:
+-after following the necessary installation steps:
+-npm install -g newman 
+-newman run api-tests.json
