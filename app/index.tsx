@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS tag (
 // );
 
     );
-    console.log("db created");
+   // console.log("db created");
   return db;
 }
 
@@ -83,7 +83,7 @@ const navigation = useNavigation();
       }}
     >
 
-       <Text>USERNAME</Text>
+       <Text testID="username">USERNAME</Text>
        <TextInput
        placeholder = "Name"
        value={username}
