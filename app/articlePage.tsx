@@ -110,7 +110,7 @@ const articlePage: React.FC = () => {
 
 
 
-            <Text> userID: {user.id}</Text>
+            {/* <Text> userID: {user.id}</Text> */}
             <Text>Tags:</Text>
             <View style={styles.tagsContainer}>
                 {article?.des_facet ? (
