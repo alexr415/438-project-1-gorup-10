@@ -60,7 +60,6 @@ export default function Index() {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-
     const db = SQLite.openDatabaseSync('NewsDB.db');
     const user = db.getFirstSync('SELECT * FROM user WHERE username = ? AND password = ?', [username, password]);
     if (user) {
@@ -70,7 +69,20 @@ export default function Index() {
       Alert.alert('Invalid username or password');
     }
   };
+
+  const handleDebugLogin = () => {
+    const db = SQLite.openDatabaseSync('NewsDB.db');
+    const user = db.getFirstSync('SELECT * FROM user WHERE username = ? AND password = ?', [username, password]);
+    if (user) {
+      navigation.navigate('debug', { user });
+    }
+    else {
+      Alert.alert('Invalid username or password');
+    }
+  };
+
   const navigation = useNavigation();
+  
   return (
 
 
@@ -108,10 +120,10 @@ export default function Index() {
         onPress={handleLogin}
       />
 
-
-
-
-
+<Button
+        title="Debug"
+        onPress={handleDebugLogin}
+      />
 
     </View>
   );
