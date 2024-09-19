@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "493a3d0e-1a01-46ad-8af6-1ed4a5d0df79",
+		"name": "438proj1group10",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38441092"
+	},
+	"item": [
+		{
+			"name": "NYT Most Popular API Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.property('status');",
+							"    pm.expect(responseData).to.have.property('copyright');",
+							"    pm.expect(responseData).to.have.property('num_results');",
+							"    pm.expect(responseData).to.have.property('results');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the results object\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.results).to.exist.and.to.be.an('array').that.is.not.empty;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Media array is present and contains the expected number of elements\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.results[0].media).to.exist.and.to.be.an('array');",
+							"    pm.expect(responseData.results[0].media).to.have.lengthOf(1);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Uri, url,source, and published_date are non-empty strings\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData).to.be.an('object');",
+							"  ",
+							"  const propertiesToCheck = [\"uri\", \"url\", \"source\", \"published_date\"];",
+							"  propertiesToCheck.forEach(property => {",
+							"    pm.expect(responseData.results[0][property]).to.be.a('string').and.to.have.lengthOf.at.least(1, property + \" should not be empty\");",
+							"  });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "8duji3hTFBI6T8qSfdg1VWLixNcAnsV8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nytimes",
+						"com"
+					],
+					"path": [
+						"svc",
+						"mostpopular",
+						"v2",
+						"viewed",
+						"1.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.have.property('status');",
+							"   ",
+							"    pm.expect(responseData).to.have.property('response');",
+							"    pm.expect(responseData.response).to.have.property('docs');",
+							"    ",
+							"});",
+							"",
+							"",
+							"pm.test(\"Docs array is present and contains expected number of elements\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.response.docs).to.be.an('array');",
+							"    pm.expect(responseData.response.docs).to.have.lengthOf.at.least(1);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the structure of the 'docs' array\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.response.docs).to.be.an('array').and.to.have.lengthOf.at.least(1, \"Array should not be empty\");",
+							"",
+							"    responseData.response.docs.forEach(function(doc) {",
+							"        pm.expect(doc.abstract).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.web_url).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.snippet).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.lead_paragraph).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.multimedia).to.exist.and.to.be.an('array');",
+							"        pm.expect(doc.headline).to.exist.and.to.be.an('object');",
+							"        pm.expect(doc.keywords).to.exist.and.to.be.an('array');",
+							"        pm.expect(doc.pub_date).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.document_type).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.news_desk).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.section_name).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.subsection_name).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.byline).to.exist.and.to.be.an('object');",
+							"        pm.expect(doc._id).to.exist.and.to.be.a('string');",
+							"        pm.expect(doc.word_count).to.exist.and.to.be.a('number');",
+							"        pm.expect(doc.uri).to.exist.and.to.be.a('string');",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=elections",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nytimes",
+						"com"
+					],
+					"path": [
+						"svc",
+						"search",
+						"v2",
+						"articlesearch.json"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "q",
+							"value": "elections"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "query",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "8duji3hTFBI6T8qSfdg1VWLixNcAnsV8",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "api-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_key",
+			"value": "8duji3hTFBI6T8qSfdg1VWLixNcAnsV8",
+			"type": "string"
+		}
+	]
+}
