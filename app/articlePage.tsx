@@ -75,7 +75,7 @@ const articlePage: React.FC = () => {
         console.log("This is from the DB")
         const db = SQLite.openDatabaseSync('NewsDB.db');
         // grabs all the tags asosciated with that article
-        tags = db.getFirstSync("SELECT * FROM tag WHERE articleID = ?", [article.id])
+        tags = db.getAllSync("SELECT * FROM tag WHERE articleID = ?", [article.id])
         console.log(tags)
     }
 
@@ -119,10 +119,16 @@ const articlePage: React.FC = () => {
                             <Text style={styles.tagButtonText}>{tag}</Text>
                         </TouchableOpacity>
                     ))
-                ) : (
+                ) : article?.keywords ? (
                     article?.keywords?.map((keyword: { value: string }, index: number) => (
                         <TouchableOpacity key={index} style={styles.tagButton} onPress={() => console.log(keyword.value)}>
                             <Text style={styles.tagButtonText}>{keyword.value}</Text>
+                        </TouchableOpacity>
+                    ))
+                ) : (
+                    tags?.map((tag, index: number) => (
+                        <TouchableOpacity key={index} style={styles.tagButton} onPress={() => console.log(tag.name)}>
+                            <Text style={styles.tagButtonText}>{tag.name}</Text>
                         </TouchableOpacity>
                     ))
                 )}
@@ -135,7 +141,7 @@ const articlePage: React.FC = () => {
             <Button title="Read more" onPress={() => Linking.openURL(article?.web_url ?? article?.url)} />
 
             <Text>{article.content}</Text>
-
+            
         </View>
     );
 };
