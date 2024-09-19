@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-
-
 import { Modal, Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking } from "react-native";
-
 import * as SQLite from 'expo-sqlite';
 import { useRoute } from '@react-navigation/native';
 
 const API_KEY = '8duji3hTFBI6T8qSfdg1VWLixNcAnsV8';
 
-// import every function that does stuff, populate names, pull from DB and API
+// test every function that does stuff, populate names, pull from DB and API 
+function testDBConnection(){
+    const db = SQLite.openDatabaseSync('NewsDB.db');
+    const usernames = db.getAllSync("SELECT username FROM user")
+    
+    let usernamesString = ""
+    usernames.map((username) => (
+        usernamesString += username.username +', '
+    ))
+    alert(`All usernames: ${usernamesString}`)
+}
 
 const debug: React.FC = () => {
     // const navigation = useNavigation();
@@ -21,8 +28,8 @@ const debug: React.FC = () => {
         <View style={styles.container}>
             <Text>UserID: {user.id}</Text>
             <Button
-                title="Test Something"
-                onPress={() => {}}
+                title='Test DB Connection: Usernames'
+                onPress={testDBConnection}
             />
         </View>
     );
