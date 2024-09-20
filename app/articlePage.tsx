@@ -63,7 +63,15 @@ const ArticlePage: React.FC = () => {
             // db.execSync(`INSERT INTO article (userid, imageurl, title, date) VALUES (?,?,?,?);`, [userID, imageurl, title, date]);
             Alert.alert('Article added to favorites');
         }
+    }
 
+    const removeFavorite = () => {
+        const db = SQLite.openDatabaseSync('NewsDB.db');
+
+        const favorite = db.getFirstSync('SELECT * FROM article WHERE url = ? AND userID = ?', [(article?.web_url ?? article.url), user.id]);
+
+        db.runSync ('DELETE FROM article WHERE url = ? AND userID = ?' , [(article?.web_url ?? article.url), user.id]);
+        Alert.alert('Article removed from favorites');
     }
 
     console.log(article)
@@ -131,6 +139,7 @@ const ArticlePage: React.FC = () => {
             </View>
 
             <Button testID='addFavBtn' title="Add To favorites" onPress={handleFavorite} />
+            <Button testID='remFavBtn 'title="Remove from favorites" onPress={removeFavorite} />
 
             <Text>{'\n'}</Text>
 

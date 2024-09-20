@@ -41,6 +41,7 @@ test('should render the articlePage page', () => {
     const section = getByTestId('section')
     const tagLabel = getByTestId('tagLabel')
     const addFavBtn = getByTestId('addFavBtn')
+    const remFavBtn = getByTestId('remFavBtn')
     const readMore = getByTestId('readMore')
 
     expect(image).toBeTruthy();
@@ -52,6 +53,7 @@ test('should render the articlePage page', () => {
     expect(section).toBeTruthy();
     expect(tagLabel).toBeTruthy();
     expect(addFavBtn).toBeTruthy();
+    expect(remFavBtn).toBeTruthy();
     expect(readMore).toBeTruthy();
 });
 
