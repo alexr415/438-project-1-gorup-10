@@ -66,14 +66,6 @@ const ArticlePage: React.FC = () => {
         }
     }
 
-    const removeFavorite = () => {
-        const db = SQLite.openDatabaseSync('NewsDB.db');
-
-        const favorite = db.getFirstSync('SELECT * FROM article WHERE url = ? AND userID = ?', [(article?.web_url ?? article.url), user.id]);
-
-        db.runSync ('DELETE FROM article WHERE url = ? AND userID = ?' , [(article?.web_url ?? article.url), user.id]);
-        Alert.alert('Article removed from favorites');
-    }
             const removeFavorite = () => {
                 const db = SQLite.openDatabaseSync('NewsDB.db');
 
