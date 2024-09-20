@@ -36,7 +36,9 @@ test('should render the homePage page', () => {
     const favoritesBtn = getByTestId('favoritesBtn');
     const logoutBtn = getByTestId('logoutBtn');
     const accountBtn = getByTestId('accountBtn');
+    const scrollView = getByTestId('scrollView');
 
+    expect(scrollView).toBeTruthy();
     expect(articleSearch).toBeTruthy();
     expect(beginDate).toBeTruthy();
     expect(endDate).toBeTruthy();

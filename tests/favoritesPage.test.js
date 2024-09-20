@@ -43,7 +43,9 @@ test('should render the favoritesPage page', () => {
 
     const suggestBtn = getByTestId('suggestBtn');
     const title = getByTestId('title');
-    
+    const scrollView = getByTestId('scrollView');
+
+    expect(scrollView).toBeTruthy();
     expect(suggestBtn).toBeTruthy();
     expect(title).toBeTruthy();
 });

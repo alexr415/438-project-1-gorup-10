@@ -61,8 +61,8 @@ const SuggestionsPage: React.FC = () => {
 
     return (
         <View>
-            <Button title="refresh" onPress={() => fetchSuggestions()} />
-            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <Button testID='refreshBtn' title="refresh" onPress={() => fetchSuggestions()} />
+            <ScrollView testID='scrollView' contentContainerStyle={styles.scrollViewContent}>
 
             {tagsUsed && <Text>{tagsUsed}</Text>}
                 { loading ? (

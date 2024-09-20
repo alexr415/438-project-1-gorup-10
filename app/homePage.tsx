@@ -358,7 +358,7 @@ const HomePage: React.FC = () => {
             <Button testID='favoritesBtn' title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
             <Button testID='logoutBtn' title="Logout" onPress={() => navigation.navigate('index')} />
 
-            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <ScrollView testID='scrollView' contentContainerStyle={styles.scrollViewContent}>
 
                 {loading ? (
                     <Text>Loading...</Text>

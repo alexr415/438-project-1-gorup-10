@@ -30,7 +30,7 @@ const FavoritesPage: React.FC = () => {
         <View>
             <Button testID='suggestBtn' title="suggestions" onPress={() => navigation.navigate('suggestionsPage', { user })} />
             <Text testID='title'>Favorite Articles</Text>
-            <ScrollView>
+            <ScrollView testID='scrollView'>
 
                 {articles?.length > 0 ? (
                     articles.map((article, index) => (
