@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import ArticlePage from '../app/articlePage';
-import { useRoute } from '@react-navigation/native'
 
 jest.mock('expo-sqlite', () => ({
     openDatabaseSync: jest.fn(() => ({

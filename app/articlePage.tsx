@@ -44,7 +44,7 @@ const ArticlePage: React.FC = () => {
             let abstr = article.abstract;
             console.log(article.source);
             let src = article.source;
-            console.log(article?.section_name ?? article.section);
+            console.log(article?.section_name?? article.section);
             let section = article?.section_name ?? article.section;
             let result = db.runSync(`INSERT INTO article (userID, url, imageurl, title, byline, date, abstr, src, section)
             VALUES (
