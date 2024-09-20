@@ -48,18 +48,18 @@ export default function UpdateInfo() {
       }}
     >
 
-      <Text>USERNAME</Text>
+      <Text testID="username">USERNAME</Text>
 
       <TextInput
-
+        testID="usernameInput"
         placeholder="USERNAME"
         value={usern}
         onChangeText={setUserN}
 
       />
-      <Text>PASSWORD</Text>
+      <Text testID="password">PASSWORD</Text>
       <TextInput
-
+      testID="passwordInput"
         placeholder="PASSWORD"
         value={pass}
         onChangeText={setPass}
@@ -67,10 +67,12 @@ export default function UpdateInfo() {
       />
 
       <Button
+        testID="confirmBtn"
         title="Confirm Edit"
         onPress={editInfo}
       />
       <Button
+        testID="backBtn"
         title="BACK"
         onPress={goBack}
       />
