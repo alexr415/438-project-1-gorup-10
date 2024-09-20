@@ -18,6 +18,53 @@ function testDBConnection(){
     alert(`All usernames: ${usernamesString}`)
 }
 
+function testDBInsert(){
+    const db = SQLite.openDatabaseSync('NewsDB.db');
+    db.runSync("INSERT INTO user (username, password) VALUES ('testDBUser', 'ThisIsABadPassword')")
+    const addedUser = db.getFirstSync("SELECT * FROM user where username = 'testDBUser'")
+
+    if(addedUser){
+        alert("Successfully added testDBUser")
+    }else{
+        alert("Could not insert testDBUser")
+    }
+}
+
+function testDBDelete(){
+    const db = SQLite.openDatabaseSync('NewsDB.db');
+    db.runSync("DELETE FROM user WHERE username = 'testDBUser'")
+    const deletedUser = db.getFirstSync("SELECT * FROM user where username = 'testDBUser'")
+
+    if(deletedUser){
+        alert("Could not find / delete testDBUser")
+    }else{
+        alert("Successfully deleted testDBUser or did not exist already")
+    }
+}
+
+async function testNYTAPIConnection(){
+    const url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?&q=testingTheApi&api-key=8duji3hTFBI6T8qSfdg1VWLixNcAnsV8'
+    
+    try{
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data)
+
+        if (data.status === 'OK') {
+            alert("API Connection successful")
+        }else{
+            alert("Failed to connect to API")
+        }
+    }catch (error){
+        alert(`Error fetching articles: ${error}`)
+    }
+}
+
 const debug: React.FC = () => {
     // const navigation = useNavigation();
     const route = useRoute();
@@ -27,9 +74,24 @@ const debug: React.FC = () => {
     return (
         <View style={styles.container}>
             <Text>UserID: {user.id}</Text>
+            <Text style={styles.articleText}>DATABASE</Text>
             <Button
-                title='Test DB Connection: Usernames'
+                title='Test DB SELECT Usernames'
                 onPress={testDBConnection}
+            />
+            <Button
+                title='Test DB INSERT testDBUser'
+                onPress={testDBInsert}
+            />
+            <Button
+                title='Test DB DELETE testDBUser'
+                onPress={testDBDelete}
+            />
+            
+            <Text style={styles.articleText}>API</Text>
+            <Button
+                title='Test NYT API Connection'
+                onPress={testNYTAPIConnection}
             />
         </View>
     );
