@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigation } from "@react-navigation/native";
-import { Modal, Alert, TouchableOpacity, Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Linking } from "react-native";
+import React from 'react';
+import { Text, View, Button, StyleSheet} from "react-native";
 import * as SQLite from 'expo-sqlite';
 import { useRoute } from '@react-navigation/native';
 
@@ -65,7 +64,7 @@ async function testNYTAPIConnection(){
     }
 }
 
-const debug: React.FC = () => {
+const Debug: React.FC = () => {
     // const navigation = useNavigation();
     const route = useRoute();
     const { user } = route.params;
@@ -142,4 +141,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default debug;
+export default Debug;

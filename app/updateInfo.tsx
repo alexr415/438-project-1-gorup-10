@@ -1,7 +1,6 @@
 import { Text, View, Button, StyleSheet, ScrollView, TextInput, Image, Alert, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
-import { openDatabase } from 'react-native-sqlite-storage';//
 import * as SQLite from 'expo-sqlite';
 import React, { useState, useEffect } from "react";
 
@@ -9,7 +8,7 @@ import React, { useState, useEffect } from "react";
 
 //const db = SQLite.openDatabase('NewsDB.db');
 
-export default function updateInfo() {
+export default function UpdateInfo() {
   const nav = useNavigation();
   const route = useRoute();
   const { user } = route.params;

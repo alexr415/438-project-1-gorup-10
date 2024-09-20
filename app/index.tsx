@@ -77,7 +77,7 @@ export default function Index() {
   };
 
   const navigation = useNavigation();
-  
+
   return (
 
 
@@ -90,14 +90,14 @@ export default function Index() {
       }}
     >
 
-      <Text>USERNAME</Text>
+      <Text testID="username">USERNAME</Text>
       <TextInput
         placeholder="Name"
         value={username}
         onChangeText={setUsername}
       />
 
-      <Text>PASSWORD</Text>
+      <Text testID="password">PASSWORD</Text>
       <TextInput
         placeholder="Pass"
         value={password}
@@ -106,16 +106,19 @@ export default function Index() {
       />
 
       <Button
+        testID="signUpBtn"
         title="Sign up"
         onPress={() => navigation.navigate('signUPpage')}
       />
 
       <Button
+        testID="logInBtn"
         title="Log In"
         onPress={handleLogin}
       />
 
-<Button
+      <Button
+        testID="debugBtn"
         title="Debug"
         onPress={handleDebugLogin}
       />

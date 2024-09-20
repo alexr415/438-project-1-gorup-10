@@ -6,7 +6,7 @@ import * as SQLite from 'expo-sqlite';
 
 
 
-const articlePage: React.FC = () => {
+const ArticlePage: React.FC = () => {
     const route = useRoute();
     const { article, user } = route.params;
 
@@ -82,7 +82,7 @@ const articlePage: React.FC = () => {
     return (
         <View style={styles.view}>
             <Image
-
+                testID='image'
                 source={{
                     uri: article?.media?.[0]?.['media-metadata']?.[2]?.url
                         ?? (article?.imageurl ? article.imageurl : null)
@@ -92,26 +92,22 @@ const articlePage: React.FC = () => {
                 style={styles.articleImage}
                 resizeMode="contain"
             />
-            <Text style={styles.articleTitle}>Title: {article?.headline?.main ?? article.title} </Text>
-            <Text>By: {article?.byline?.original ?? article.byline} </Text>
-            <Text>Published: {new Date(article?.pub_date ?? article?.published_date ?? article?.date).toLocaleDateString()}</Text>
+            <Text testID='title' style={styles.articleTitle}>Title: {article?.headline?.main ?? article.title}</Text>
+            <Text testID='byLine'>By: {article?.byline?.original ?? article.byline}</Text>
+            <Text testID='published'>Published: {new Date(article?.pub_date ?? article?.published_date ?? article?.date).toLocaleDateString()}</Text>
 
-            <Text>Abstract: {article?.abstract ?? article?.abstr}</Text>
+            <Text testID='abstract'>Abstract: {article?.abstract ?? article?.abstr}</Text>
 
 
 
-            <Text>Source: {article?.source ?? article?.src}</Text>
-            <Text>Section: </Text>
+            <Text testID='source'>Source: {article?.source ?? article?.src}</Text>
+            <Text testID='section'>Section: </Text>
             <TouchableOpacity style={styles.sectionButton} onPress={() => console.log(article?.section_name ?? article?.section)}>
                 <Text style={styles.sectionButtonText}>{article?.section_name ?? article.section}</Text>
             </TouchableOpacity>
 
-
-
-
-
             {/* <Text> userID: {user.id}</Text> */}
-            <Text>Tags:</Text>
+            <Text testID='tagLabel'>Tags:</Text>
             <View style={styles.tagsContainer}>
                 {article?.des_facet ? (
                     article.des_facet.map((tag: string, index: number) => (
@@ -134,11 +130,11 @@ const articlePage: React.FC = () => {
                 )}
             </View>
 
-            <Button title="Add To favorites" onPress={handleFavorite} />
+            <Button testID='addFavBtn' title="Add To favorites" onPress={handleFavorite} />
 
             <Text>{'\n'}</Text>
 
-            <Button title="Read more" onPress={() => Linking.openURL(article?.web_url ?? article?.url)} />
+            <Button testID='readMore' title="Read more" onPress={() => Linking.openURL(article?.web_url ?? article?.url)} />
 
             <Text>{article.content}</Text>
             
@@ -208,4 +204,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default articlePage;
+export default ArticlePage;

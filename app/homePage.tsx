@@ -136,7 +136,7 @@ async function fetchDB() {
 }
 
 
-const homePage: React.FC = () => {
+const HomePage: React.FC = () => {
     const route = useRoute();
     const { user } = route.params;
     const [articles, setArticles] = useState([]);
@@ -504,4 +504,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default homePage;
+export default HomePage;
