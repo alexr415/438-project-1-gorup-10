@@ -264,12 +264,14 @@ const HomePage: React.FC = () => {
 
         <View style={styles.container}>
             <TextInput
+                testID='articleSearch'
                 style={styles.input}
                 placeholder="Search for articles"
                 value={query}
                 onChangeText={setQuery}
             />
             <TextInput
+                testID='beginDate'
                 style={styles.input}
                 placeholder="Begin Date (YYYY-MM-DD)"
                 value={beginDate}
@@ -278,6 +280,7 @@ const HomePage: React.FC = () => {
             />
 
             <TextInput
+                testID='endDate'
                 style={styles.input}
                 placeholder="End Date (YYYY-MM-DD)"
                 value={endDate}
@@ -285,7 +288,7 @@ const HomePage: React.FC = () => {
                 keyboardType="numeric"
             />
 
-            <Button title="Search" onPress={handleSearch} />
+            <Button testID='searchBtn' title="Search" onPress={handleSearch} />
 
             {/* Popup window for filters */}
             <Modal
@@ -351,9 +354,9 @@ const HomePage: React.FC = () => {
                 </View>
             </Modal>
 
-            <Button title="Add Search Filters" onPress={() => setModalVisible(true)} />
-            <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
-            <Button title="Logout" onPress={() => navigation.navigate('index')} />
+            <Button testID='ModalBtn' title="Add Search Filters" onPress={() => setModalVisible(true)} />
+            <Button testID='favoritesBtn' title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
+            <Button testID='logoutBtn' title="Logout" onPress={() => navigation.navigate('index')} />
 
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
 
@@ -389,6 +392,7 @@ const HomePage: React.FC = () => {
 
             </ScrollView>
             <Button
+                    testID='accountBtn'
                    title="Account"
                    onPress={updateAccount}
                  />
