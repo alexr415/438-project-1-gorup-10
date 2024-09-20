@@ -25,6 +25,7 @@ const articlePage: React.FC = () => {
             Alert.alert('Article already in favorites');
             return;
         }
+
         else {
             console.log('adding article to favorites');
             console.log("USER ID:" + user.id);
@@ -65,7 +66,14 @@ const articlePage: React.FC = () => {
         }
 
     }
+            const removeFavorite = () => {
+                const db = SQLite.openDatabaseSync('NewsDB.db');
 
+                const favorite = db.getFirstSync('SELECT * FROM article WHERE url = ? AND userID = ?', [(article?.web_url ?? article.url), user.id]);
+
+                db.runSync ('DELETE FROM article WHERE url = ? AND userID = ?' , [(article?.web_url ?? article.url), user.id]);
+                Alert.alert('Article removed from favorites');
+}
     console.log(article)
 
     let tags = null
@@ -135,7 +143,7 @@ const articlePage: React.FC = () => {
             </View>
 
             <Button title="Add To favorites" onPress={handleFavorite} />
-
+            <Button title="Remove from favorites" onPress={removeFavorite} />
             <Text>{'\n'}</Text>
 
             <Button title="Read more" onPress={() => Linking.openURL(article?.web_url ?? article?.url)} />
