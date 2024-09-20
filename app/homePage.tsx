@@ -136,7 +136,7 @@ async function fetchDB() {
 }
 
 
-const homePage: React.FC = () => {
+const HomePage: React.FC = () => {
     const route = useRoute();
     const { user } = route.params;
     const [articles, setArticles] = useState([]);
@@ -264,12 +264,14 @@ const homePage: React.FC = () => {
 
         <View style={styles.container}>
             <TextInput
+                testID='articleSearch'
                 style={styles.input}
                 placeholder="Search for articles"
                 value={query}
                 onChangeText={setQuery}
             />
             <TextInput
+                testID='beginDate'
                 style={styles.input}
                 placeholder="Begin Date (YYYY-MM-DD)"
                 value={beginDate}
@@ -278,6 +280,7 @@ const homePage: React.FC = () => {
             />
 
             <TextInput
+                testID='endDate'
                 style={styles.input}
                 placeholder="End Date (YYYY-MM-DD)"
                 value={endDate}
@@ -285,7 +288,7 @@ const homePage: React.FC = () => {
                 keyboardType="numeric"
             />
 
-            <Button title="Search" onPress={handleSearch} />
+            <Button testID='searchBtn' title="Search" onPress={handleSearch} />
 
             {/* Popup window for filters */}
             <Modal
@@ -351,11 +354,11 @@ const homePage: React.FC = () => {
                 </View>
             </Modal>
 
-            <Button title="Add Search Filters" onPress={() => setModalVisible(true)} />
-            <Button title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
-            <Button title="Logout" onPress={() => navigation.navigate('index')} />
+            <Button testID='ModalBtn' title="Add Search Filters" onPress={() => setModalVisible(true)} />
+            <Button testID='favoritesBtn' title='Favorites' onPress={() => navigation.navigate('favoritesPage', { user })} />
+            <Button testID='logoutBtn' title="Logout" onPress={() => navigation.navigate('index')} />
 
-            <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <ScrollView testID='scrollView' contentContainerStyle={styles.scrollViewContent}>
 
                 {loading ? (
                     <Text>Loading...</Text>
@@ -389,6 +392,7 @@ const homePage: React.FC = () => {
 
             </ScrollView>
             <Button
+                    testID='accountBtn'
                    title="Account"
                    onPress={updateAccount}
                  />
@@ -504,4 +508,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default homePage;
+export default HomePage;
