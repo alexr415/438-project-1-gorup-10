@@ -7,7 +7,7 @@ jest.mock('expo-sqlite', () => ({
         execSync: jest.fn(),
         transaction: jest.fn(),
         getFirstAsync: jest.fn(() => ({
-            
+
         })),
     })),
 }));
@@ -25,7 +25,7 @@ jest.mock('@react-navigation/native', () => ({
     }),
 }));
 
-test('should render the favoritesPage page', () => {
+test('should render the homePage page', () => {
     const { getByTestId } = render(<HomePage />);
 
     const articleSearch = getByTestId('articleSearch');

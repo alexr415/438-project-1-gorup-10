@@ -25,7 +25,7 @@ jest.mock('@react-navigation/native', () => ({
     }),
 }));
 
-test('should render the favoritesPage page', () => {
+test('should render the signUPpage page', () => {
     const { getByTestId } = render(<SignUp />);
 
     const username = getByTestId('username');
