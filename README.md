@@ -30,9 +30,9 @@
 - then press a 
 
 - ### API Testing:
--after following the necessary installation steps:
--npm install -g newman 
--newman run api-tests.json
+- after following the necessary installation steps:
+- npm install -g newman 
+- newman run api-tests.json
 
 We got styling help for this document from [this guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
