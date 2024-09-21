@@ -17,7 +17,7 @@
 ### Usage:
 - this app is good to keep up to date with news and look for specific articles and intrests in the news 
 
-- ### Installation instructions:
+### Installation instructions:
 - install android studio and follow these steps https://reactnative.dev/docs/set-up-your-environment  (make sure to click the target OS android in the link)
 - additional installations are:
 - npm install react-native-element-dropdown --save
@@ -47,7 +47,7 @@ We got styling help for this document from [this guide](https://docs.github.com/
 
 ## Team Retrospective
 
-### Alex Rpy
+### Alex Roy
 
 - [link to pull requests](https://github.com/alexr415/438-project-1-gorup-10/pulls?q=is%3Apr+is%3Aclosed+assignee%3Aalexr415)
 - [link to issues](https://github.com/alexr415/438-project-1-gorup-10/issues?q=is%3Aissue+is%3Aclosed+assignee%3Aalexr415)
