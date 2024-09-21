@@ -3,7 +3,7 @@
 
 [Video Walkthrough](https://www.youtube.com/watch?v=o-YBDTqX_ZU) 
 <!-- Ads have really ruined rick-rolling. -->
-[Github Repo](https://github.com/dclinkenbeard/MyDemoApplication](https://github.com/alexr415/438-project-1-gorup-10))
+[Github Repo](https://github.com/alexr415/438-project-1-gorup-10)
 
 ## Overview
 **This app allows users to browse articles, favorite them, and get suggestions based on their favorites**
