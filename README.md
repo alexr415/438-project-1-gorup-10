@@ -38,12 +38,12 @@ We got styling help for this document from [this guide](https://docs.github.com/
 
 ## Introduction
 
-* How was communication managed
-+ We communicated regularly on Slack
-* How many stories/issues were initially considered
-+ We initially came up with 15 stories.
-* How many stories/issues were completed
-+ We completed 17 stories in the end. 
+*+ How was communication managed
+  + We communicated regularly on Slack
++ How many stories/issues were initially considered
+  + We initially came up with 15 stories.
++ How many stories/issues were completed
+  + We completed 17 stories in the end. 
 
 ## Team Retrospective
 
