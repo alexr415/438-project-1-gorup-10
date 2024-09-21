@@ -1,12 +1,3 @@
-#438 Project 1 Group 10 News Plug
-
-
-
-
-- ## API TESTING:
--after following the necessary installation steps:
--npm install -g newman 
--newman run api-tests.json
 
 # Project 01 Retrospective and overview
 
