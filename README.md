@@ -29,7 +29,7 @@
 - npx expo start
 - then press a 
 
-- ## API TESTING:
+- ### API Testing:
 -after following the necessary installation steps:
 -npm install -g newman 
 -newman run api-tests.json
