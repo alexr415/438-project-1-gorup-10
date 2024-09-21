@@ -14,7 +14,7 @@
 - https://developer.nytimes.com/docs/most-popular-product/1/overview
 
 
-- ### Usage:
+### Usage:
 - this app is good to keep up to date with news and look for specific articles and intrests in the news 
 
 - ### Installation instructions:
@@ -29,7 +29,7 @@
 - npx expo start
 - then press a 
 
-- ### API Testing:
+### API Testing:
 - after following the necessary installation steps:
 - npm install -g newman 
 - newman run api-tests.json
