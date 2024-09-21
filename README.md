@@ -8,20 +8,21 @@
 ## Overview
 **This app allows users to browse articles, favorite them, and get suggestions based on their favorites**
 
-## API's used: 
--https://developer.nytimes.com/docs/articlesearch-product/1/overview
--https://developer.nytimes.com/docs/most-popular-product/1/overview
+### API's used: 
+- https://developer.nytimes.com/docs/articlesearch-product/1/overview
+
+- https://developer.nytimes.com/docs/most-popular-product/1/overview
 
 
-- ## Usage:
+- ### Usage:
 - this app is good to keep up to date with news and look for specific articles and intrests in the news 
 
-- ## Installation instructions:
+- ### Installation instructions:
 - install android studio and follow these steps https://reactnative.dev/docs/set-up-your-environment  (make sure to click the target OS android in the link)
 - additional installations are:
-- - npm install react-native-element-dropdown --save
-  - npx expo install expo-sqlite
-  - npm install
+- npm install react-native-element-dropdown --save
+- npx expo install expo-sqlite
+- npm install
 - when trying to run use: npx expo run
 - click android and wait for downloades to complete
 - STOP HERE and follow API TESTING if you want to test API is working correctly
@@ -38,8 +39,11 @@ We got styling help for this document from [this guide](https://docs.github.com/
 ## Introduction
 
 * How was communication managed
++ We communicated regularly on Slack
 * How many stories/issues were initially considered
++ We initially came up with 15 stories.
 * How many stories/issues were completed
++ We completed 17 stories in the end. 
 
 ## Team Retrospective
 
@@ -88,6 +92,7 @@ Carol mostly worked on getting the app to run faster, better, and higher.  She d
 ## Conclusion
 
 - How successful was the project?
-  - Think in terms of what did you set out to do and what actually got done?
+
 - What was the largest victory?
+
 - Final assessment of the project
