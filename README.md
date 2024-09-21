@@ -66,7 +66,7 @@ For this project I worked on a variety of things from UI,API’s, and databases.
 + If you could do it over, what would you change?
   + This was my first time planning a group project like this where we start with a list of issues, then each take an issue and start from there. In the future I would spend more time looking at which issues need to be done first before moving on to others, that way someone doesn’t start working on an issue that requires another person to finish theirs first. 
 + What is the most valuable thing you learned?
-  +The most valuable thing I learned from this was working with a framework like React Native. I know it is popular in the real world and there’s a good chance I will work with it again, both in school and future work, so I enjoyed being able to get familiar with it. 
+  + The most valuable thing I learned from this was working with a framework like React Native. I know it is popular in the real world and there’s a good chance I will work with it again, both in school and future work, so I enjoyed being able to get familiar with it. 
 
 ### Andrew Aguilar
 [Pull Requests](https://github.com/alexr415/438-project-1-gorup-10/pulls?q=is%3Apr+is%3Aclosed+author%3AAf0n)
