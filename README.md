@@ -68,26 +68,20 @@ For this project I worked on a variety of things from UI,API’s, and databases.
 + What is the most valuable thing you learned?
   +The most valuable thing I learned from this was working with a framework like React Native. I know it is popular in the real world and there’s a good chance I will work with it again, both in school and future work, so I enjoyed being able to get familiar with it. 
 
-### Carol Danvers
-1. Carol's pull requests are [here](https://github.com/Jonathan-Welham/Bits-Bots/pulls/@CarolDanvers)
-1. Carol's Github issues are [here](https://github.com/FedericoRubino/cst438_project2/issues/created_by/@FedericoRubino)
+### Andrew Aguilar
+[Pull Requests](https://github.com/alexr415/438-project-1-gorup-10/pulls?q=is%3Apr+is%3Aclosed+author%3AAf0n)
 
+[Issues](https://github.com/alexr415/438-project-1-gorup-10/issues?q=is%3Aissue+is%3Aclosed+assignee%3AAf0n)
 #### What was your role / which stories did you work on
-Carol mostly worked on getting the app to run faster, better, and higher.  She did the best work possible but her contributions were overpowered and not well received by the fans.
+**I was responsible for making the Debug page, displaying the article from the Favorites and Suggestions pages, and implementing the filter modal including the proper API logic to make filters work.**
 
-+ What was the biggest challenge? 
-  + Managing pull requests and merges
-+ Why was it a challenge?
-  + We were all new to git/github and not everyone followed convention
-  + How was the challenge addressed?
-  + I went to the TA for help and used ChatGPT and web resources to get more comfortable with git.
-+ Favorite / most interesting part of this project
-  + Finally getting the IDs from the API calls to store in the ROOM database
-+ If you could do it over, what would you change?
-  + I would get the ROOM database setup FIRST
-+ What is the most valuable thing you learned?
-  + Do the work early and document EVERYTHING
+The biggest challenge I faced was the unit testing. I had never used Jest before, and to be honest, I haven't written unit tests in a while. In my personal projects, it's not something I often stop to do. Combined with needing to learn an entirely new system in order to test code? Didn't exactly help. But, I did get some help from my teammates. I also asked ChatGPT what the Jest syntax was doing when I didn't understand.
 
+My favorite part of the project was actually building the pages. That was my favorite part of the software design class, my favorite part of web dev class, and that's no different here.
+
+If I could do it over, I would definitely commit to having a more set schedule for the group than we ended up having. I think that  would help the flow of the project much better. I think also, I would defer database setup off the bat. I was a bit overconfident in my Android Room skills, and the database was delayed by a week because I just couldn't figure it out.
+
+The most valuable thing I learned is to not overestimate my abilities when working in an unfamiliar environment. This was my first time using React Native too, so it didn't help.
 
 ## Conclusion
 
