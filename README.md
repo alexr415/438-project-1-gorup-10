@@ -111,6 +111,33 @@ I would involve myself more with the project and take on more tasks.
 What is the most valuable thing you learned?
 How to use React native and sql lite within the project.
 
+### Nicholas Garcia
+[Pull Requests](https://github.com/alexr415/438-project-1-gorup-10/pulls?q=is%3Apr+author%3A%40me+is%3Aclosed)
+
+[Issues](https://github.com/alexr415/438-project-1-gorup-10/issues?q=is%3Aissue+is%3Aclosed+assignee%3AnickGar123)
+
+
+#### What was your role / which stories did you work on
+During Project 1 I worked on The logout button, the remove from favriotes, and filter by begin and end date.
+
+What was the biggest challenge?
+Biggest challenge for me was at the start getting react native to work.
+
+Why was it a challenge?
+I was getting weird errors that were eventually fixed.
+
+How was the challenge addressed?
+I searched through articles and the web as well as youtube which fixed most of the errors and then asked a teammate for help.
+
+Favorite / most interesting part of this project
+I liked adding the filters and adding to database.
+
+If you could do it over, what would you change?
+I would get help to set up react native sooner so I can start my issues.
+
+What is the most valuable thing you learned?
+How to use React native and sql lite within the project as well as work witha team very closely and how to communicate with them.
+
 
 
 ## Conclusion
