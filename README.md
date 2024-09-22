@@ -1,8 +1,8 @@
 
 # Project 01 Retrospective and overview
 
-[Video Walkthrough](https://www.youtube.com/watch?v=o-YBDTqX_ZU) 
-<!-- Ads have really ruined rick-rolling. -->
+[Video Walkthrough](https://youtu.be/Yv6L0VQuROM) 
+
 [Github Repo](https://github.com/alexr415/438-project-1-gorup-10)
 
 ## Overview
@@ -82,6 +82,36 @@ My favorite part of the project was actually building the pages. That was my fav
 If I could do it over, I would definitely commit to having a more set schedule for the group than we ended up having. I think that  would help the flow of the project much better. I think also, I would defer database setup off the bat. I was a bit overconfident in my Android Room skills, and the database was delayed by a week because I just couldn't figure it out.
 
 The most valuable thing I learned is to not overestimate my abilities when working in an unfamiliar environment. This was my first time using React Native too, so it didn't help.
+
+
+### Francisco Solis
+[Pull Requests](https://github.com/alexr415/438-project-1-gorup-10/pulls?q=is%3Apr+is%3Aclosed+author%3AFranciscoCamach0)
+
+[Issues](https://github.com/alexr415/438-project-1-gorup-10/issues?q=is%3Aissue+is%3Aclosed+assignee%3AFranciscoCamach0)
+
+
+#### What was your role / which stories did you work on
+During Project 1 I worked on making the login page, sign up page, and updating user info, and connecting it to the database.
+
+What was the biggest challenge?
+Biggest challenge for me was at the start getting react native to work.
+
+Why was it a challenge?
+It would throw erros at me saying I did not have a emulator open when I did.
+
+How was the challenge addressed?
+I searched for youtube videos and found out what was wrong from them and fixed it.
+
+Favorite / most interesting part of this project
+I liked connecting everything into the database the most.
+
+If you could do it over, what would you change?
+I would involve myself more with the project and take on more tasks.
+
+What is the most valuable thing you learned?
+How to use React native and sql lite within the project.
+
+
 
 ## Conclusion
 
