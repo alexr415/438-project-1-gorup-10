@@ -142,8 +142,10 @@ How to use React native and sql lite within the project as well as work witha te
 
 ## Conclusion
 
-- How successful was the project?
+### How successful was the project?
+The project was a success overall, we encountered a few bugs, but overall were able to close all of our issues and get a functioning project allowing users to see articles and do various things with them.
+### What was the largest victory?
+Our largest victory was setting up our database and connecting the api to out project.
 
-- What was the largest victory?
-
-- Final assessment of the project
+### Final assessment of the project
+Overall this project proved to be difficult at the start getting everything situated and up and running. However this project also gave us valuable experience working with react native and sqlite that will help us in the future.
